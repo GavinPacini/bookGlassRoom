@@ -18,6 +18,10 @@ process.env.ALREADY_BOOKED_MESSAGE = "will have to cancel your pending booking o
 process.env.SUCCESSFULLY_BOOKED_MESSAGE = "Booking Request SUCCESSFUL"
 process.env.URL_PREFIX = "https://www.scss.tcd.ie/cgi-bin/webcal/sgmr/sgmr";
 
+process.env.PASSWORD_PACINIG = "lol";
+process.env.PASSWORD_BRINIZ = "you";
+process.env.PASSWORD_GATTIA = "wish";
+
 console.log("----------------------");
 console.log("| Result from server |");
 console.log("----------------------\n");
@@ -30,4 +34,4 @@ index.handler(event, null, function (error, res) {
   console.log("\n----------------------");
   console.log("|     End result     |");
   console.log("----------------------");
-})
+});
