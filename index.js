@@ -11,29 +11,29 @@ const dates = {
     },
     "16" : {
       day: 6,
-      time: 11
+      time: 12
     },
     "18" : {
       day: 6,
-      time: 13
+      time: 14
     },
   },
   "3" : { //wed
     "20" : {
       day: 6,
-      time: 15
+      time: 16
     }
   },
   "6" : { //sat
-    "13" : {
+    "14" : {
       day: 0,
       time: 12
     },
-    "15" : {
+    "16" : {
       day: 0,
       time: 14
     },
-    "17" : {
+    "18" : {
       day: 0,
       time: 16
     },
