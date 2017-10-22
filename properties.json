@@ -23,5 +23,36 @@
     "8",
     "9",
     "4"
-  ]
+  ],
+  "dates": [
+    {
+      "day": 0,
+      "hour": 12
+    },
+    {
+      "day": 0,
+      "hour": 14
+    },
+    {
+      "day": 0,
+      "hour": 16
+    },
+    {
+      "day": 3,
+      "hour": 18
+    },
+    {
+      "day": 6,
+      "hour": 12
+    },
+    {
+      "day": 6,
+      "hour": 14
+    },
+    {
+      "day": 6,
+      "hour": 16
+    }
+  ],
+  "maxHourForBooking" : 2
 }

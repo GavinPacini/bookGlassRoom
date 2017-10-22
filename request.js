@@ -1,52 +1,34 @@
 const request = require('request-promise-native');
-const auth = require('./auth');
-const properties = require('./properties');
-const validRooms = properties.validRooms;
+const moment = require('moment');
+const validRooms = require('./properties').validRooms;
 
-exports.statuses = (cb) => {
-  let promises = [];
-  properties.users.forEach((value) => {
-    let authValue = auth.createAuthForUser(value.username);
-    promises.push(statusForAuth(value, authValue));
-  });
-
-  return Promise.all(promises).then((users) => {
-    users = users.filter((value) => value != null); 
-    if (users.length > 0) {
-      cb(null, users);
-    } else {
-      cb(new Error('No available users.'));
-    }
-  }).catch((err) => {
-    cb(err);
-  });
-};
-
-let statusForAuth = (user, auth) => {
+exports.statusForUser = (user) => {
   return new Promise((resolve, reject) => {
     const options = {
       url: process.env.URL_PREFIX + validRooms[0] + ".request.pl",
       headers: {
-        'Authorization': auth
+        'Authorization': user.auth
       }
     };
 
     request.get(options)
       .then((body) => {
         let alreadyBooked = body.includes(process.env.ALREADY_BOOKED_MESSAGE);
-        if (!alreadyBooked) {
-          resolve({ user: user, auth: auth });
-        } else {
-          resolve();
+        if (alreadyBooked) {
+          let date = body.match(/\d{1,2}\/\d{1,2}\/\d{4}/)[0];
+          let time = body.match(/\d{1,2}\:\d{1,2}/)[0];
+
+          let dateAndTime = date + " " + time;
+          user.nextBookingDate = moment(dateAndTime, "DD/MM/YYYY HH:mm");
         }
+
+        resolve(user);
       })
-      .catch((err) => {
-        resolve();
-      });
+      .catch((err) => resolve());
   });
 };
 
-let makeRequest = (roomNumber, auth, formData, cb) => {
+let bookRoom = (roomNumber, auth, formData, cb) => {
   if (roomNumber > validRooms.length) {
     // TODO: Notify on slack, no rooms available
     return cb(new Error('NO ROOMS AVAILABLE!'));
@@ -62,7 +44,7 @@ let makeRequest = (roomNumber, auth, formData, cb) => {
 
   request.post(options, function (error, response, body) {
     if (error) {
-      return makeRequest(roomNumber + 1, auth, formData, cb);
+      return bookRoom(roomNumber + 1, auth, formData, cb);
     }
 
     if (response.statusCode == 200) {
@@ -72,7 +54,7 @@ let makeRequest = (roomNumber, auth, formData, cb) => {
       }
     }
 
-    return makeRequest(roomNumber + 1, auth, formData, cb);
+    return bookRoom(roomNumber + 1, auth, formData, cb);
   });
 };
-exports.makeRequest = makeRequest;
+exports.bookRoom = bookRoom;
