@@ -1,0 +1,28 @@
+{
+  "name": "bookglassroom",
+  "version": "1.0.0",
+  "description": "Run: `node wrapper.js` if testing locally. Run: `node --debug wrapper.js` if debugging locally.",
+  "main": "index.js",
+  "dependencies": {
+    "moment": "^2.19.1",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "dotenv": "5.0.0"
+  },
+  "scripts": {
+    "dev": "node --debug wrapper.js",
+    "push" : "zip -r bookGlassRoom.zip . -x *.git* && aws lambda update-function-code --function-name bookGlassRoom --zip-file fileb://./bookGlassRoom.zip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GavinPacini/bookGlassRoom.git"
+  },
+  "author": "Gavin Pacini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GavinPacini/bookGlassRoom/issues"
+  },
+  "homepage": "https://github.com/GavinPacini/bookGlassRoom#readme"
+}
