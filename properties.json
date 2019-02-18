@@ -1,16 +1,12 @@
 {
   "users": [
     {
-      "name": "Gavin",
-      "username": "pacinig"
+      "name": "INSERT NAME 1",
+      "username": "INSERT USERNAME 1"
     },
     {
-      "name": "Zied",
-      "username": "briniz"
-    },
-    {
-      "name": "Alessandro",
-      "username": "gattia"
+      "name": "INSERT NAME 2",
+      "username": "INSERT USERNAME 2"
     }
   ],
   "validRooms": [

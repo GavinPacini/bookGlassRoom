@@ -2,7 +2,7 @@ const index = require('./index');
 
 const event = {
   "version": "0",
-  "id": "89d1a02d-5ec7-412e-82f5-13505f849b41",
+  "id": "89d1a02d-5ec7-412e-82f5-13505f849b46",
   "detail-type": "Scheduled Event",
   "source": "aws.events",
   "account": "123456789012",
@@ -17,11 +17,6 @@ const event = {
 process.env.ALREADY_BOOKED_MESSAGE = "will have to cancel your pending booking or wait until";
 process.env.SUCCESSFULLY_BOOKED_MESSAGE = "Booking Request SUCCESSFUL"
 process.env.URL_PREFIX = "https://www.scss.tcd.ie/cgi-bin/webcal/sgmr/sgmr";
-
-// Below must be set if .env file is not present
-// process.env.PASSWORD_PACINIG = "lol";
-// process.env.PASSWORD_BRINIZ = "you";
-// process.env.PASSWORD_GATTIA = "wish";
 
 require('dotenv').config();
 
