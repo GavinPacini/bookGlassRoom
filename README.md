@@ -1,5 +1,7 @@
 # Book TCD Glass Rooms using AWS Lambda
 
+Automatically books a SCSS glass room in TCD based on the `validRooms` and `dates` objects in *properties.json*.
+
 ## Setup 
 1. Change the `users` objects in *properties.json* accordingly, using your TCD usernames.
 2. Set password environment variables for the process based on these usernames e.g. if the username is *john*, you need an environment variable `PASSWORD_JOHN` with his password.
